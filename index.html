@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Abhinav Bankar — Software Developer building fast, accessible, and delightful web experiences." />
+  <meta name="theme-color" content="#fff7fb" />
+  <title>Abhinav Bankar — Software Developer</title>
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Abhinav Bankar — Software Developer" />
+  <meta property="og:description" content="Full-stack developer crafting fast, accessible, delightful web experiences." />
+  <meta property="og:type" content="website" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <!-- Animated background -->
+  <div class="bg-aurora" aria-hidden="true">
+    <span class="orb orb--1"></span>
+    <span class="orb orb--2"></span>
+    <span class="orb orb--3"></span>
+    <div class="grid-overlay"></div>
+  </div>
+
+  <!-- Scroll progress -->
+  <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
+
+  <!-- Navbar -->
+  <header class="nav" id="nav">
+    <div class="container nav__inner">
+      <a href="#home" class="nav__logo" aria-label="Home">
+        <span class="nav__logo-mark">AB</span>
+        <span class="nav__logo-text">Abhinav<span class="accent">.</span></span>
+      </a>
+
+      <nav class="nav__links" id="navLinks" aria-label="Primary">
+        <a href="#about" class="nav__link">About</a>
+        <a href="#skills" class="nav__link">Skills</a>
+        <a href="#projects" class="nav__link">Projects</a>
+        <a href="#experience" class="nav__link">Experience</a>
+        <a href="#contact" class="nav__link">Contact</a>
+        <a href="#contact" class="btn btn--small nav__cta">Let's talk</a>
+      </nav>
+
+      <button class="nav__toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero -->
+    <section class="hero" id="home">
+      <div class="container hero__inner">
+        <p class="hero__eyebrow reveal">
+          <span class="status-dot"></span> Open to freelance &amp; client work
+        </p>
+        <h1 class="hero__title reveal">Hi, I'm Abhinav Bankar.</h1>
+        <p class="hero__typed reveal">I build <span class="gradient-text" id="typed">web experiences</span></p>
+        <p class="hero__subtitle reveal">
+          A front-end developer with 2.5 years at Capgemini, now sharpening my craft with modern
+          tools and hands-on projects. I'm actively learning and ready to take on client requirements —
+          turning designs into fast, responsive, and accessible interfaces.
+        </p>
+        <div class="hero__actions reveal">
+          <a href="#projects" class="btn btn--primary">View my work</a>
+          <a href="#contact" class="btn btn--ghost">Get in touch</a>
+        </div>
+
+        <ul class="hero__stats reveal" aria-label="Highlights">
+          <li><strong>2.5</strong><span>Years at Capgemini</span></li>
+          <li><strong data-count="2">0</strong><span>Projects built</span></li>
+          <li><strong>∞</strong><span>Curiosity to learn</span></li>
+        </ul>
+      </div>
+      <a href="#about" class="hero__scroll" aria-label="Scroll down">
+        <span class="hero__scroll-mouse"></span>
+      </a>
+    </section>
+
+    <!-- About -->
+    <section class="section" id="about">
+      <div class="container">
+        <div class="section__head reveal">
+          <h2 class="section__title">About me</h2>
+        </div>
+
+        <div class="about">
+          <div class="about__text reveal">
+            <p class="about__lead">
+              I'm a front-end developer who turns designs into fast, responsive, and accessible
+              interfaces — now freelancing after <strong>2.5 years at Capgemini</strong>.
+            </p>
+            <p>
+              At Capgemini I worked within delivery teams on real-world enterprise applications and
+              learned how software is built and shipped at scale. Today I'm focused on modern
+              front-end work and I'm <strong>ready to take on real client requirements</strong> —
+              bringing strong fundamentals, fast learning, and genuine care for the craft.
+            </p>
+            <div class="about__callout">
+              <span class="about__callout-ico" aria-hidden="true">⚡</span>
+              <p>
+                I work hand-in-hand with modern <strong>AI tools</strong> to accelerate delivery
+                while keeping the quality, polish, and detail that clients expect.
+              </p>
+            </div>
+          </div>
+
+          <aside class="profile reveal">
+            <div class="profile__top">
+              <div class="profile__avatar" aria-hidden="true">AB</div>
+              <div class="profile__id">
+                <p class="profile__name">Abhinav Bankar</p>
+                <p class="profile__role">Front-end Developer</p>
+              </div>
+              <span class="profile__badge"><span class="profile__badge-dot"></span>Available</span>
+            </div>
+
+            <ul class="profile__facts">
+              <li>
+                <span class="profile__ico profile__ico--1" aria-hidden="true">💼</span>
+                <span class="profile__fact"><strong>Experience</strong>2.5 yrs · Capgemini</span>
+              </li>
+              <li>
+                <span class="profile__ico profile__ico--2" aria-hidden="true">🎨</span>
+                <span class="profile__fact"><strong>Specialty</strong>Front-end &amp; UI</span>
+              </li>
+              <li>
+                <span class="profile__ico profile__ico--3" aria-hidden="true">⚡</span>
+                <span class="profile__fact"><strong>Workflow</strong>AI-assisted delivery</span>
+              </li>
+              <li>
+                <span class="profile__ico profile__ico--4" aria-hidden="true">🌐</span>
+                <span class="profile__fact"><strong>Availability</strong>Freelance · Remote</span>
+              </li>
+            </ul>
+
+            <a href="#contact" class="btn btn--primary btn--block">Let's work together</a>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- Skills -->
+    <section class="section" id="skills">
+      <div class="container">
+        <div class="section__head reveal">
+          <h2 class="section__title">Skills &amp; tools</h2>
+        </div>
+
+        <div class="skills">
+          <article class="skill-card reveal">
+            <div class="skill-card__head">
+              <span class="skill-card__icon" aria-hidden="true">&lt;/&gt;</span>
+              <div>
+                <h3>Languages &amp; frameworks</h3>
+                <p class="skill-card__desc">The core of every interface I build.</p>
+              </div>
+            </div>
+            <ul class="tags">
+              <li>JavaScript</li><li>TypeScript</li><li>React</li><li>Next.js</li>
+              <li>Vue</li><li>HTML5</li>
+            </ul>
+          </article>
+
+          <article class="skill-card reveal">
+            <div class="skill-card__head">
+              <span class="skill-card__icon" aria-hidden="true">🎨</span>
+              <div>
+                <h3>Styling &amp; UI</h3>
+                <p class="skill-card__desc">Pixel-perfect, responsive, and animated.</p>
+              </div>
+            </div>
+            <ul class="tags">
+              <li>CSS / Sass</li><li>Tailwind</li><li>Framer Motion</li>
+              <li>Responsive design</li><li>Design systems</li><li>Figma</li>
+            </ul>
+          </article>
+
+          <article class="skill-card reveal">
+            <div class="skill-card__head">
+              <span class="skill-card__icon" aria-hidden="true">🛠️</span>
+              <div>
+                <h3>Tooling &amp; build</h3>
+                <p class="skill-card__desc">A fast, modern front-end workflow.</p>
+              </div>
+            </div>
+            <ul class="tags">
+              <li>Vite</li><li>Git</li><li>npm / pnpm</li>
+              <li>ESLint</li><li>AI tools (Copilot, Claude)</li>
+            </ul>
+          </article>
+
+          <article class="skill-card reveal">
+            <div class="skill-card__head">
+              <span class="skill-card__icon" aria-hidden="true">✨</span>
+              <div>
+                <h3>Craft &amp; quality</h3>
+                <p class="skill-card__desc">What makes a UI feel effortless.</p>
+              </div>
+            </div>
+            <ul class="tags">
+              <li>Accessibility</li><li>Performance</li><li>Testing (Jest / RTL)</li>
+              <li>Cross-browser</li><li>SEO</li><li>Code review</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects -->
+    <section class="section" id="projects">
+      <div class="container">
+        <div class="section__head reveal">
+          <h2 class="section__title">Projects</h2>
+        </div>
+
+        <p class="section__lead reveal">
+          I'm early in my journey, so these are projects I've built to learn and sharpen my
+          front-end skills — not production apps yet. I'd love for the next one to be
+          <a href="#contact" class="link">yours</a>.
+        </p>
+
+        <div class="projects">
+          <article class="project glass reveal">
+            <div class="project__media" data-label="Personal">
+              <span class="project__glow"></span>
+            </div>
+            <div class="project__body">
+              <h3 class="project__title">Developer Portfolio</h3>
+              <p class="project__desc">
+                This very website — designed and built from scratch with plain HTML, CSS &amp; JS.
+                Fully responsive, animated, and accessible.
+              </p>
+              <ul class="tags tags--inline">
+                <li>HTML5</li><li>CSS3</li><li>JavaScript</li>
+              </ul>
+              <div class="project__links">
+                <a href="#" class="link">Source ↗</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="project glass reveal">
+            <div class="project__media" data-label="Practice">
+              <span class="project__glow"></span>
+            </div>
+            <div class="project__body">
+              <h3 class="project__title">Responsive Landing Page</h3>
+              <p class="project__desc">
+                A practice build to master modern layout, responsive design, and scroll
+                animations — focused on clean, mobile-first markup.
+              </p>
+              <ul class="tags tags--inline">
+                <li>HTML5</li><li>CSS3</li><li>Flexbox / Grid</li>
+              </ul>
+              <div class="project__links">
+                <a href="#" class="link">Live demo ↗</a>
+                <a href="#" class="link">Source ↗</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="project project--cta glass reveal">
+            <div class="project__media project__media--cta" data-label="Available">
+              <span class="project__glow"></span>
+            </div>
+            <div class="project__body">
+              <h3 class="project__title">Your project here</h3>
+              <p class="project__desc">
+                I'm ready to take on real client work. If you have an idea or a requirement,
+                let's build it together — I'll bring the effort and care.
+              </p>
+              <div class="project__links">
+                <a href="#contact" class="link">Start a project ↗</a>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Experience -->
+    <section class="section" id="experience">
+      <div class="container">
+        <div class="section__head reveal">
+          <h2 class="section__title">Experience</h2>
+        </div>
+
+        <div class="xp">
+          <article class="xp-card xp-card--a reveal">
+            <span class="xp-card__num" aria-hidden="true">01</span>
+            <div class="xp-card__head">
+              <span class="xp-card__mark">C</span>
+              <span class="xp-card__date">Jan 2024 — Sep 2025</span>
+            </div>
+            <h3 class="xp-card__role">Software Associate</h3>
+            <p class="xp-card__company">Capgemini</p>
+            <p class="xp-card__desc">
+              Maintained existing websites and identified bugs across the UI — building a strong
+              foundation in real-world codebases, debugging, and front-end quality.
+            </p>
+            <ul class="xp-card__tags">
+              <li>UI Maintenance</li><li>Bug Hunting</li><li>Quality</li>
+            </ul>
+          </article>
+
+          <div class="xp-arrow" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor"
+                 stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M5 12h14M13 6l6 6-6 6" />
+            </svg>
+          </div>
+
+          <article class="xp-card xp-card--b reveal">
+            <span class="xp-card__num" aria-hidden="true">02</span>
+            <div class="xp-card__head">
+              <span class="xp-card__mark">C</span>
+              <span class="xp-card__date">Oct 2025 — Jun 2026</span>
+            </div>
+            <h3 class="xp-card__role">Software Analyst</h3>
+            <p class="xp-card__company">Capgemini</p>
+            <p class="xp-card__desc">
+              Part of the development team crafting user interfaces for the internal applications
+              of a global footwear client — building and refining UIs alongside the delivery team.
+            </p>
+            <ul class="xp-card__tags">
+              <li>UI Development</li><li>Internal Apps</li><li>Global Client</li>
+            </ul>
+          </article>
+        </div>
+
+        <div class="xp-now reveal">
+          <span class="xp-now__pulse" aria-hidden="true"></span>
+          <div class="xp-now__text">
+            <p class="xp-now__title">Now — Freelance Front-end Developer</p>
+            <p class="xp-now__desc">
+              I've stepped out on my own and I'm available for client projects. Let's bring
+              your idea to life.
+            </p>
+          </div>
+          <a href="#contact" class="btn btn--primary btn--small xp-now__cta">Hire me</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section class="section section--contact" id="contact">
+      <div class="container">
+        <div class="contact glass reveal">
+          <div class="section__head section__head--center">
+            <h2 class="section__title">Let's build something</h2>
+          </div>
+          <p class="contact__lead">
+            Have a project in mind or just want to say hi? My inbox is always open.
+          </p>
+
+          <form class="contact__form" id="contactForm" novalidate>
+            <div class="field">
+              <label for="name">Name</label>
+              <input type="text" id="name" name="name" placeholder="Jane Doe" required />
+              <span class="field__error" data-for="name"></span>
+            </div>
+            <div class="field">
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email" placeholder="jane@example.com" required />
+              <span class="field__error" data-for="email"></span>
+            </div>
+            <div class="field field--full">
+              <label for="message">Message</label>
+              <textarea id="message" name="message" rows="5" placeholder="Tell me about your project…" required></textarea>
+              <span class="field__error" data-for="message"></span>
+            </div>
+            <button type="submit" class="btn btn--primary btn--block">Send message</button>
+            <p class="contact__note" id="formNote" role="status" aria-live="polite"></p>
+          </form>
+
+          <div class="contact__socials">
+            <a href="#" class="social" aria-label="GitHub">GitHub</a>
+            <a href="#" class="social" aria-label="LinkedIn">LinkedIn</a>
+            <a href="mailto:aabhinav@protonmail.com" class="social" aria-label="Email">Email</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__inner">
+      <p>© <span id="year"></span> Abhinav Bankar. All rights reserved.</p>
+      <a href="#home" class="footer__top">Back to top ↑</a>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
