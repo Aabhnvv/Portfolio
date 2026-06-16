@@ -808,6 +808,24 @@ input, textarea { font-family: inherit; }
 .field--invalid textarea { border-color: var(--c-pink); }
 .field__error { font-size: 0.78rem; color: var(--c-pink); min-height: 1em; font-weight: 600; }
 .contact__form .btn { grid-column: 1 / -1; margin-top: 0.4rem; }
+.hp { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; overflow: hidden; }
+
+/* Thank-you panel (shown after a successful send) */
+.thanks { text-align: center; padding: 1rem 0 0.5rem; animation: thanksIn 0.5s var(--ease); }
+.thanks__ico {
+  width: 72px; height: 72px;
+  margin: 0 auto 1.2rem;
+  display: grid; place-items: center;
+  border-radius: 50%;
+  color: #fff;
+  background: linear-gradient(135deg, var(--c-green), var(--c-cyan));
+  box-shadow: 0 16px 34px -12px rgba(33, 208, 122, 0.7);
+  animation: thanksPop 0.5s var(--ease) 0.1s both;
+}
+.thanks__title { font-family: var(--font-display); font-weight: 800; font-size: clamp(1.4rem, 3vw, 1.9rem); color: var(--ink); margin-bottom: 0.6rem; }
+.thanks__text { color: var(--ink-soft); max-width: 42ch; margin: 0 auto 1.6rem; }
+@keyframes thanksIn { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+@keyframes thanksPop { 0% { transform: scale(0.4); opacity: 0; } 60% { transform: scale(1.12); } 100% { transform: scale(1); opacity: 1; } }
 .contact__note { grid-column: 1 / -1; text-align: center; font-size: 0.9rem; color: var(--c-green); min-height: 1.2em; font-weight: 600; }
 .contact__socials { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.8rem; margin-top: 2rem; }
 .social {
@@ -836,6 +854,12 @@ input, textarea { font-family: inherit; }
 /* ---------- Scroll reveal ---------- */
 .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.7s var(--ease), transform 0.7s var(--ease); }
 .reveal.visible { opacity: 1; transform: none; }
+
+/* Anchor offset so sections aren't hidden under the sticky header */
+section[id] { scroll-margin-top: 76px; }
+
+/* Mobile bottom tab bar — hidden on desktop, shown on phones */
+.tabbar { display: none; }
 
 /* ---------- Responsive ---------- */
 @media (max-width: 860px) {
@@ -868,4 +892,54 @@ input, textarea { font-family: inherit; }
   .section__head { flex-direction: column; align-items: flex-start; gap: 0.3rem; }
   .hero__actions { width: 100%; }
   .hero__actions .btn { flex: 1; }
+}
+
+/* ---------- Mobile web-app layout ---------- */
+@media (max-width: 760px) {
+  /* Persistent slim app header (no hamburger / slide menu) */
+  .nav { padding: 0.55rem 0; background: rgba(255, 255, 255, 0.82); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border-bottom: 1px solid var(--border); }
+  .nav.scrolled { padding: 0.55rem 0; }
+  .nav__toggle, .nav__links { display: none !important; }
+
+  /* Reserve space for the bottom tab bar (+ device safe area) */
+  body { padding-bottom: calc(68px + env(safe-area-inset-bottom)); }
+
+  /* App-style bottom tab bar */
+  .tabbar {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    position: fixed;
+    left: 0; right: 0; bottom: 0;
+    z-index: 96;
+    background: rgba(255, 255, 255, 0.86);
+    backdrop-filter: blur(20px) saturate(150%);
+    -webkit-backdrop-filter: blur(20px) saturate(150%);
+    border-top: 1px solid var(--border);
+    box-shadow: 0 -12px 30px -22px rgba(27, 21, 48, 0.55);
+    padding: 0.35rem 0.25rem calc(0.35rem + env(safe-area-inset-bottom));
+  }
+  .tab {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3px;
+    padding: 0.45rem 0;
+    border-radius: 14px;
+    font-size: 0.62rem;
+    font-weight: 600;
+    letter-spacing: 0.2px;
+    color: var(--ink-dim);
+    transition: color 0.25s, background 0.25s, transform 0.2s var(--ease);
+  }
+  .tab svg { width: 23px; height: 23px; transition: transform 0.25s var(--ease); }
+  .tab:active { transform: scale(0.9); }
+  .tab.active { color: var(--c-violet); background: rgba(124, 58, 237, 0.10); }
+  .tab.active svg { transform: translateY(-1px); }
+
+  /* The desktop scroll cue isn't needed in the app layout */
+  .hero__scroll { display: none; }
+
+  /* Roomier, app-like section rhythm */
+  .section { padding: 3.2rem 0; }
+  .hero { padding: 5.5rem 0 3rem; min-height: 92vh; }
 }

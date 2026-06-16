@@ -2,10 +2,17 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <meta name="description" content="Abhinav Bankar — Software Developer building fast, accessible, and delightful web experiences." />
   <meta name="theme-color" content="#fff7fb" />
   <title>Abhinav Bankar — Software Developer</title>
+
+  <!-- Installable web-app (PWA) -->
+  <link rel="manifest" href="manifest.json" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+  <meta name="apple-mobile-web-app-title" content="Abhinav" />
 
   <!-- Open Graph -->
   <meta property="og:title" content="Abhinav Bankar — Software Developer" />
@@ -359,7 +366,7 @@
             Have a project in mind or just want to say hi? My inbox is always open.
           </p>
 
-          <form class="contact__form" id="contactForm" novalidate>
+          <form class="contact__form" id="contactForm" action="https://api.web3forms.com/submit" method="POST" novalidate>
             <div class="field">
               <label for="name">Name</label>
               <input type="text" id="name" name="name" placeholder="Jane Doe" required />
@@ -375,13 +382,36 @@
               <textarea id="message" name="message" rows="5" placeholder="Tell me about your project…" required></textarea>
               <span class="field__error" data-for="message"></span>
             </div>
+            <!-- Web3Forms config -->
+            <input type="hidden" name="access_key" value="998a1ef8-f789-4a5c-89fd-83be2f9d0711" />
+            <input type="hidden" name="subject" value="New message from your portfolio" />
+            <input type="hidden" name="from_name" value="Portfolio Contact Form" />
+            <!-- Spam honeypot (hidden from real users) -->
+            <input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" aria-hidden="true" class="hp" />
             <button type="submit" class="btn btn--primary btn--block">Send message</button>
             <p class="contact__note" id="formNote" role="status" aria-live="polite"></p>
           </form>
 
+          <div class="thanks" id="formThanks" hidden>
+            <div class="thanks__ico" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="34" height="34" fill="none" stroke="currentColor"
+                   stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M20 6L9 17l-5-5" />
+              </svg>
+            </div>
+            <h3 class="thanks__title">Thank you<span id="thanksName"></span>!</h3>
+            <p class="thanks__text">
+              Your message just landed in my inbox. I'll get back to you as soon as I can —
+              usually within a day.
+            </p>
+            <button type="button" class="btn btn--ghost btn--small" id="thanksReset">
+              Send another message
+            </button>
+          </div>
+
           <div class="contact__socials">
-            <a href="#" class="social" aria-label="GitHub">GitHub</a>
-            <a href="#" class="social" aria-label="LinkedIn">LinkedIn</a>
+            <a href="https://github.com/aabhnvv" target="_blank" rel="noopener" class="social" aria-label="GitHub">GitHub</a>
+            <a href="https://www.linkedin.com/in/Abhinav-bankar" target="_blank" rel="noopener" class="social" aria-label="LinkedIn">LinkedIn</a>
             <a href="mailto:aabhinav@protonmail.com" class="social" aria-label="Email">Email</a>
           </div>
         </div>
@@ -395,6 +425,41 @@
       <a href="#home" class="footer__top">Back to top ↑</a>
     </div>
   </footer>
+
+  <!-- Mobile app-style bottom navigation -->
+  <nav class="tabbar" id="tabbar" aria-label="Mobile navigation">
+    <a href="#home" class="tab" aria-label="Home">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M3 10.5 12 3l9 7.5" /><path d="M5 9.5V21h14V9.5" />
+      </svg>
+      <span>Home</span>
+    </a>
+    <a href="#skills" class="tab" aria-label="Skills">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="3" y="3" width="7" height="7" rx="1.5" /><rect x="14" y="3" width="7" height="7" rx="1.5" />
+        <rect x="3" y="14" width="7" height="7" rx="1.5" /><rect x="14" y="14" width="7" height="7" rx="1.5" />
+      </svg>
+      <span>Skills</span>
+    </a>
+    <a href="#projects" class="tab" aria-label="Projects">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12 3 2 8.5 12 14l10-5.5L12 3Z" /><path d="M2 15.5 12 21l10-5.5" />
+      </svg>
+      <span>Work</span>
+    </a>
+    <a href="#experience" class="tab" aria-label="Experience">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="3" y="7" width="18" height="13" rx="2" /><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" />
+      </svg>
+      <span>Path</span>
+    </a>
+    <a href="#contact" class="tab" aria-label="Contact">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="3" y="5" width="18" height="14" rx="2" /><path d="m4 7 8 6 8-6" />
+      </svg>
+      <span>Contact</span>
+    </a>
+  </nav>
 
   <script src="script.js"></script>
 </body>

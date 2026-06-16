@@ -85,10 +85,12 @@
 
   /* ---------- Active nav link on scroll (scrollspy) ---------- */
   const sections = document.querySelectorAll("main section[id]");
+  const navItems = document.querySelectorAll(".nav__link, .tab");
   const linkMap = {};
-  document.querySelectorAll(".nav__link").forEach(function (link) {
-    const id = link.getAttribute("href").replace("#", "");
-    linkMap[id] = link;
+  navItems.forEach(function (link) {
+    const id = (link.getAttribute("href") || "").replace("#", "");
+    if (!id) return;
+    (linkMap[id] = linkMap[id] || []).push(link);
   });
 
   if ("IntersectionObserver" in window) {
@@ -96,9 +98,8 @@
       function (entries) {
         entries.forEach(function (entry) {
           if (entry.isIntersecting) {
-            Object.values(linkMap).forEach((l) => l.classList.remove("active"));
-            const active = linkMap[entry.target.id];
-            if (active) active.classList.add("active");
+            navItems.forEach((l) => l.classList.remove("active"));
+            (linkMap[entry.target.id] || []).forEach((l) => l.classList.add("active"));
           }
         });
       },
@@ -186,8 +187,27 @@
     return !message;
   }
 
+  const thanks = document.getElementById("formThanks");
+  const thanksName = document.getElementById("thanksName");
+  const thanksReset = document.getElementById("thanksReset");
+
+  function showThanks(firstName) {
+    if (!thanks) return;
+    if (thanksName) thanksName.textContent = firstName ? ", " + firstName : "";
+    form.hidden = true;
+    if (note) note.textContent = "";
+    thanks.hidden = false;
+  }
+
+  if (thanksReset) {
+    thanksReset.addEventListener("click", function () {
+      if (thanks) thanks.hidden = true;
+      if (form) form.hidden = false;
+    });
+  }
+
   if (form) {
-    form.addEventListener("submit", function (e) {
+    form.addEventListener("submit", async function (e) {
       e.preventDefault();
       const name = form.name;
       const email = form.email;
@@ -212,22 +232,72 @@
 
       if (!ok) {
         if (note) {
-          note.style.color = "var(--accent-3)";
+          note.style.color = "var(--c-pink)";
           note.textContent = "Please fix the highlighted fields.";
         }
         return;
       }
 
-      // Front-end only: simulate a successful send.
-      if (note) {
-        note.style.color = "#38e07b";
-        note.textContent = "Thanks! Your message has been sent (demo).";
+      const btn = form.querySelector('button[type="submit"]');
+      const endpoint = form.getAttribute("action") || "";
+      const fallbackEmail = "aabhinav@protonmail.com";
+      const keyField = form.querySelector('input[name="access_key"]');
+      const accessKey = keyField ? keyField.value : "";
+
+      function clearInvalid() {
+        ["name", "email", "message"].forEach((id) => {
+          const f = document.getElementById(id);
+          if (f) f.closest(".field").classList.remove("field--invalid");
+        });
       }
-      form.reset();
-      ["name", "email", "message"].forEach((id) => {
-        const f = document.getElementById(id);
-        if (f) f.closest(".field").classList.remove("field--invalid");
-      });
+
+      // Access key not configured yet → demo fallback so the form still "works".
+      if (!endpoint || !accessKey || accessKey.indexOf("YOUR_ACCESS_KEY") !== -1) {
+        if (note) {
+          note.style.color = "#16a35c";
+          note.textContent = "Thanks! (Demo mode — add your Web3Forms access key to receive emails.)";
+        }
+        form.reset();
+        clearInvalid();
+        return;
+      }
+
+      // Real submission.
+      const originalLabel = btn ? btn.textContent : "";
+      if (btn) { btn.disabled = true; btn.textContent = "Sending…"; }
+      if (note) { note.style.color = "var(--ink-soft)"; note.textContent = "Sending your message…"; }
+
+      try {
+        const res = await fetch(endpoint, {
+          method: "POST",
+          body: new FormData(form),
+          headers: { Accept: "application/json" },
+        });
+
+        let data = {};
+        try { data = await res.json(); } catch (_) {}
+
+        if (res.ok && data.success) {
+          const enteredName = (name.value || "").trim().split(" ")[0];
+          showThanks(enteredName);
+          form.reset();
+          clearInvalid();
+          if (note) note.textContent = "";
+        } else {
+          const msg =
+            data && data.message
+              ? data.message
+              : "Something went wrong. Please email me directly at " + fallbackEmail + ".";
+          if (note) { note.style.color = "var(--c-pink)"; note.textContent = msg; }
+        }
+      } catch (err) {
+        if (note) {
+          note.style.color = "var(--c-pink)";
+          note.textContent = "Network error. Please email me directly at " + fallbackEmail + ".";
+        }
+      } finally {
+        if (btn) { btn.disabled = false; btn.textContent = originalLabel; }
+      }
     });
 
     // Clear an error as soon as the user fixes the field.

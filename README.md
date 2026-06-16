@@ -90,8 +90,8 @@ Because it's fully static, you can host it for free on:
 ## 📬 Contact
 
 - **Email:** aabhinav@protonmail.com
-- **GitHub:** [your-github-username](https://github.com/your-github-username)
-- **LinkedIn:** [your-linkedin](https://linkedin.com/in/your-linkedin)
+- **GitHub:** [aabhnvv](https://github.com/aabhnvv)
+- **LinkedIn:** [Abhinav-bankar](https://www.linkedin.com/in/Abhinav-bankar)
 
 Open to freelance and client projects — let's build something!
 
