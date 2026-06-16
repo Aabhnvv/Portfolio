@@ -2,7 +2,7 @@
 
 A modern, fully responsive personal portfolio built with **plain HTML, CSS, and JavaScript** — no frameworks, no build step, no dependencies. Just open it in a browser and it runs.
 
-Designed to be bold, colorful, and smooth on both desktop and mobile, with scroll animations, a typing effect, and a clean component-style structure.
+Designed to be bold, colorful, and smooth on both desktop and mobile. On phones it transforms into a **native app-style experience** with a bottom tab bar and can be **installed to the home screen** as a PWA.
 
 > 🎨 Front-end developer · ex-Capgemini (2.5 yrs) · now freelancing and available for client work.
 
@@ -12,13 +12,15 @@ Designed to be bold, colorful, and smooth on both desktop and mobile, with scrol
 
 - **100% vanilla** — HTML5, CSS3, and modern JavaScript (no libraries or frameworks)
 - **Fully responsive** — fluid layouts with `clamp()` typography; looks great from 320px phones to large desktops
+- **Mobile web-app layout** — a fixed, app-style **bottom tab bar** with icons + active highlighting, a slim app header, and device safe-area support
+- **Installable PWA** — `manifest.json` + web-app meta let visitors *Add to Home Screen* and run it full-screen, standalone
 - **Bold, colorful theme** — vibrant gradients, animated background orbs, and glassy accents
 - **Scroll reveal animations** — sections fade/slide in using `IntersectionObserver`
-- **Animated hero** — typing effect that cycles through phrases + animated stat counters
-- **Sticky, scroll-aware navbar** — shrinks on scroll, highlights the active section (scrollspy), and a slide-in menu on mobile
+- **Animated hero** — centered name with a typing effect that cycles through phrases + animated stat counters
+- **Sticky, scroll-aware navbar** — shrinks on scroll and highlights the active section (scrollspy, synced with the mobile tab bar)
 - **Scroll progress bar** at the top of the page
-- **Front-end contact form** with live validation (no back-end required)
-- **Accessibility-minded** — semantic markup, `aria` labels, keyboard-friendly menu, and full `prefers-reduced-motion` support
+- **Working contact form** — validated and wired to [Web3Forms](https://web3forms.com), so submissions are emailed directly (no back-end), with a personalized thank-you panel
+- **Accessibility-minded** — semantic markup, `aria` labels, keyboard-friendly nav, and full `prefers-reduced-motion` support
 
 ---
 
@@ -30,6 +32,8 @@ Designed to be bold, colorful, and smooth on both desktop and mobile, with scrol
 | Styling     | CSS3 — custom properties, grid, flexbox     |
 | Behavior    | Vanilla JavaScript (ES6+)                   |
 | Fonts       | Google Fonts — Sora & Inter                 |
+| Forms       | Web3Forms (free, no back-end)               |
+| PWA         | Web App Manifest (installable)              |
 | Tooling     | None required — runs as static files        |
 
 ---
@@ -39,8 +43,9 @@ Designed to be bold, colorful, and smooth on both desktop and mobile, with scrol
 ```
 Portfolio/
 ├── index.html      # All page markup & content
-├── styles.css      # Design tokens, layout, components, responsive rules
-└── script.js       # Navbar, scroll reveal, scrollspy, typing, counters, form
+├── styles.css      # Design tokens, layout, components, responsive + mobile app rules
+├── script.js       # Nav, tab bar, scroll reveal, scrollspy, typing, counters, form
+└── manifest.json   # PWA manifest (installable web app)
 ```
 
 ---
@@ -74,6 +79,7 @@ Everything is content-driven and easy to edit:
 - **Colors & theme** → tweak the CSS custom properties under `:root` in `styles.css`
 - **Typing phrases** → edit the `words` array in `script.js`
 - **Links** → update the social links and the email address in the contact section
+- **Contact form** → set your own [Web3Forms](https://web3forms.com) access key in the form's hidden `access_key` field
 
 ---
 
