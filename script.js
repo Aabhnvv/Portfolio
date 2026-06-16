@@ -16,18 +16,39 @@
   const nav = document.getElementById("nav");
   const progress = document.getElementById("scrollProgress");
 
-  function onScroll() {
-    const scrolled = window.scrollY;
-    if (nav) nav.classList.toggle("scrolled", scrolled > 30);
+  // Cache the scrollable height; only re-measure on resize/load (avoids a
+  // forced layout on every scroll event, the #1 cause of scroll jank).
+  let docH = 0;
+  function measure() {
+    docH = document.documentElement.scrollHeight - window.innerHeight;
+  }
+  measure();
+  window.addEventListener("resize", measure, { passive: true });
+  window.addEventListener("load", measure);
 
+  let scrolledClass = null;
+  let ticking = false;
+  function updateOnScroll() {
+    const scrolled = window.scrollY;
+    const shouldShrink = scrolled > 30;
+    if (nav && shouldShrink !== scrolledClass) {
+      nav.classList.toggle("scrolled", shouldShrink);
+      scrolledClass = shouldShrink;
+    }
     if (progress) {
-      const docH = document.documentElement.scrollHeight - window.innerHeight;
-      const pct = docH > 0 ? (scrolled / docH) * 100 : 0;
-      progress.style.width = pct + "%";
+      const ratio = docH > 0 ? scrolled / docH : 0;
+      progress.style.transform = "scaleX(" + ratio.toFixed(4) + ")";
+    }
+    ticking = false;
+  }
+  function onScroll() {
+    if (!ticking) {
+      ticking = true;
+      requestAnimationFrame(updateOnScroll);
     }
   }
   window.addEventListener("scroll", onScroll, { passive: true });
-  onScroll();
+  updateOnScroll();
 
   /* ---------- Mobile nav toggle ---------- */
   const toggle = document.getElementById("navToggle");
@@ -85,7 +106,7 @@
 
   /* ---------- Active nav link on scroll (scrollspy) ---------- */
   const sections = document.querySelectorAll("main section[id]");
-  const navItems = document.querySelectorAll(".nav__link, .tab");
+  const navItems = document.querySelectorAll(".nav__link, .tab, .nav__cta");
   const linkMap = {};
   navItems.forEach(function (link) {
     const id = (link.getAttribute("href") || "").replace("#", "");
@@ -123,17 +144,20 @@
     );
     counters.forEach((c) => countObserver.observe(c));
   } else {
-    counters.forEach((c) => (c.textContent = c.getAttribute("data-count") + "+"));
+    counters.forEach(
+      (c) => (c.textContent = c.getAttribute("data-count") + (c.getAttribute("data-suffix") || "+"))
+    );
   }
 
   function animateCount(el) {
     const target = parseInt(el.getAttribute("data-count"), 10) || 0;
+    const suffix = el.getAttribute("data-suffix") || "+";
     const duration = 1400;
     const start = performance.now();
     function step(now) {
       const p = Math.min((now - start) / duration, 1);
       const eased = 1 - Math.pow(1 - p, 3); // easeOutCubic
-      el.textContent = Math.round(eased * target) + (p === 1 ? "+" : "");
+      el.textContent = Math.round(eased * target) + (p === 1 ? suffix : "");
       if (p < 1) requestAnimationFrame(step);
     }
     requestAnimationFrame(step);
@@ -143,10 +167,10 @@
   const typed = document.getElementById("typed");
   if (typed && !prefersReducedMotion) {
     const words = [
-      "web experiences",
-      "design systems",
-      "responsive UIs",
-      "delightful interfaces",
+      "fast websites",
+      "responsive interfaces",
+      "engaging web apps",
+      "pixel-perfect UIs",
     ];
     let wordIdx = 0;
     let charIdx = 0;
@@ -209,9 +233,9 @@
   if (form) {
     form.addEventListener("submit", async function (e) {
       e.preventDefault();
-      const name = form.name;
-      const email = form.email;
-      const message = form.message;
+      const name = form.elements.namedItem("name");
+      const email = form.elements.namedItem("email");
+      const message = form.elements.namedItem("message");
       let ok = true;
 
       ok = setError(name, name.value.trim() ? "" : "Please enter your name.") && ok;

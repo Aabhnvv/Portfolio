@@ -4,7 +4,7 @@ A modern, fully responsive personal portfolio built with **plain HTML, CSS, and 
 
 Designed to be bold, colorful, and smooth on both desktop and mobile. On phones it transforms into a **native app-style experience** with a bottom tab bar and can be **installed to the home screen** as a PWA.
 
-> 🎨 Front-end developer · ex-Capgemini (2.5 yrs) · now freelancing and available for client work.
+> 🎨 Freelance front-end developer · 2.5 yrs at Capgemini · AI-powered workflow across design, build & deployment.
 
 ---
 
@@ -14,12 +14,13 @@ Designed to be bold, colorful, and smooth on both desktop and mobile. On phones 
 - **Fully responsive** — fluid layouts with `clamp()` typography; looks great from 320px phones to large desktops
 - **Mobile web-app layout** — a fixed, app-style **bottom tab bar** with icons + active highlighting, a slim app header, and device safe-area support
 - **Installable PWA** — `manifest.json` + web-app meta let visitors *Add to Home Screen* and run it full-screen, standalone
+- **Client-focused content** — a **Services** section ("what I can build for you") and a **How I work** process (Discuss → Design → Build → Deploy), with an **AI-powered workflow** highlighted throughout
 - **Bold, colorful theme** — vibrant gradients, animated background orbs, and glassy accents
 - **Scroll reveal animations** — sections fade/slide in using `IntersectionObserver`
 - **Animated hero** — centered name with a typing effect that cycles through phrases + animated stat counters
 - **Sticky, scroll-aware navbar** — shrinks on scroll and highlights the active section (scrollspy, synced with the mobile tab bar)
-- **Scroll progress bar** at the top of the page
-- **Working contact form** — validated and wired to [Web3Forms](https://web3forms.com), so submissions are emailed directly (no back-end), with a personalized thank-you panel
+- **Smooth, performance-tuned scrolling** — `requestAnimationFrame`-throttled scroll handler, GPU-composited progress bar, and lightweight background effects
+- **Working contact form** — validated and wired to a free form-handler service, so submissions are emailed directly (no back-end), with a personalized thank-you panel
 - **Accessibility-minded** — semantic markup, `aria` labels, keyboard-friendly nav, and full `prefers-reduced-motion` support
 
 ---
@@ -32,7 +33,7 @@ Designed to be bold, colorful, and smooth on both desktop and mobile. On phones 
 | Styling     | CSS3 — custom properties, grid, flexbox     |
 | Behavior    | Vanilla JavaScript (ES6+)                   |
 | Fonts       | Google Fonts — Sora & Inter                 |
-| Forms       | Web3Forms (free, no back-end)               |
+| Forms       | Free form-handler service (no back-end)     |
 | PWA         | Web App Manifest (installable)              |
 | Tooling     | None required — runs as static files        |
 
@@ -75,11 +76,11 @@ Then visit `http://localhost:8000`.
 
 Everything is content-driven and easy to edit:
 
-- **Text & content** → edit the sections in `index.html` (hero, about, skills, projects, experience, contact)
+- **Text & content** → edit the sections in `index.html` (hero, about, services, skills, projects, experience, contact)
 - **Colors & theme** → tweak the CSS custom properties under `:root` in `styles.css`
 - **Typing phrases** → edit the `words` array in `script.js`
 - **Links** → update the social links and the email address in the contact section
-- **Contact form** → set your own [Web3Forms](https://web3forms.com) access key in the form's hidden `access_key` field
+- **Contact form** → connect your own form-handler endpoint (any free service works) via the form's hidden config field
 
 ---
 
@@ -95,11 +96,8 @@ Because it's fully static, you can host it for free on:
 
 ## 📬 Contact
 
-- **Email:** aabhinav@protonmail.com
-- **GitHub:** [aabhnvv](https://github.com/aabhnvv)
-- **LinkedIn:** [Abhinav-bankar](https://www.linkedin.com/in/Abhinav-bankar)
-
-Open to freelance and client projects — let's build something!
+Interested in working together? Head to the **live site** and reach out through the contact form —
+I'm open to freelance and client projects.
 
 ---
 
