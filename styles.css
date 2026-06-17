@@ -732,6 +732,12 @@ input, textarea { font-family: inherit; }
 .project--cta { border-style: dashed; border-width: 2px; border-color: rgba(124, 58, 237, 0.45); }
 .project__media--cta::after { content: "✦"; }
 
+/* Center project card text on mobile (single-column) screens */
+@media (max-width: 600px) {
+  .project__body { align-items: center; text-align: center; }
+  .project__links { justify-content: center; }
+}
+
 /* ---------- Experience (career progression) ---------- */
 .xp {
   display: grid;
