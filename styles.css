@@ -967,36 +967,54 @@ input, textarea { font-family: inherit; }
   font-weight: 600;
   color: var(--ink-soft);
 }
-/* "Now — Freelancing" banner */
+/* "Available now — Freelancing" featured card */
 .xp-now {
   display: flex;
   align-items: center;
-  gap: var(--space-sm);
+  gap: var(--space-md);
   max-width: 960px;
   margin: var(--space-md) auto 0;
-  padding: 1.3rem 1.6rem;
+  padding: 1.7rem 1.9rem;
   border-radius: var(--radius-lg);
   background:
-    linear-gradient(var(--surface), var(--surface)) padding-box,
+    linear-gradient(120deg, rgba(124, 58, 237, 0.06), rgba(255, 61, 154, 0.06)) padding-box,
     var(--gradient) border-box;
   border: 2px solid transparent;
   box-shadow: var(--shadow);
 }
-.xp-now__pulse {
+/* status badge — gradient-tinted ring holding the live pulse */
+.xp-now__badge {
   flex-shrink: 0;
-  width: 12px; height: 12px;
+  display: grid; place-items: center;
+  width: 54px; height: 54px;
+  border-radius: 50%;
+  background: rgba(33, 208, 122, 0.14);
+  border: 1px solid rgba(33, 208, 122, 0.45);
+}
+.xp-now__pulse {
+  width: 13px; height: 13px;
   border-radius: 50%;
   background: var(--c-green);
   box-shadow: 0 0 0 0 rgba(33, 208, 122, 0.7);
   animation: pulse 2.2s infinite;
 }
 .xp-now__text { flex: 1; min-width: 0; }
-.xp-now__title { font-family: var(--font-display); font-weight: 800; font-size: 1.1rem; color: var(--ink); }
-.xp-now__desc { color: var(--ink-soft); font-size: 0.92rem; margin-top: 0.15rem; }
+.xp-now__eyebrow {
+  display: inline-block;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.7rem;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: #16a35c;
+  margin-bottom: 0.2rem;
+}
+.xp-now__title { font-family: var(--font-display); font-weight: 800; font-size: 1.25rem; color: var(--ink); line-height: 1.2; }
+.xp-now__desc { color: var(--ink-soft); font-size: 0.95rem; margin-top: 0.3rem; }
 .xp-now__cta { flex-shrink: 0; }
 
 @media (max-width: 600px) {
-  .xp-now { flex-direction: column; text-align: center; align-items: center; }
+  .xp-now { flex-direction: column; text-align: center; align-items: center; padding: 1.6rem 1.3rem; }
   .xp-now__cta { width: 100%; }
 }
 
