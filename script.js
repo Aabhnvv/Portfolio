@@ -105,7 +105,12 @@
   }
 
   /* ---------- Active nav link on scroll (scrollspy) ---------- */
-  const sections = document.querySelectorAll("main section[id]");
+  // Position-based rather than visibility-based: a single IntersectionObserver
+  // with a fixed threshold mis-fires for sections taller (or shorter) than the
+  // threshold band, leaving the highlight stuck on the wrong tab. Instead we
+  // pick the last section whose top has crossed a reference line near the top
+  // of the viewport — this always reflects what the user is actually reading.
+  const sections = Array.from(document.querySelectorAll("main section[id]"));
   const navItems = document.querySelectorAll(".nav__link, .tab, .nav__cta");
   const linkMap = {};
   navItems.forEach(function (link) {
@@ -114,20 +119,44 @@
     (linkMap[id] = linkMap[id] || []).push(link);
   });
 
-  if ("IntersectionObserver" in window) {
-    const spy = new IntersectionObserver(
-      function (entries) {
-        entries.forEach(function (entry) {
-          if (entry.isIntersecting) {
-            navItems.forEach((l) => l.classList.remove("active"));
-            (linkMap[entry.target.id] || []).forEach((l) => l.classList.add("active"));
-          }
-        });
-      },
-      { threshold: 0.5 }
-    );
-    sections.forEach((s) => spy.observe(s));
+  let activeId = null;
+  let spyTicking = false;
+  function updateSpy() {
+    spyTicking = false;
+    if (!sections.length) return;
+
+    // Reference line at ~35% down the viewport.
+    const line = window.innerHeight * 0.35;
+    let current = sections[0].id;
+    for (let i = 0; i < sections.length; i++) {
+      if (sections[i].getBoundingClientRect().top <= line) {
+        current = sections[i].id;
+      }
+    }
+
+    // At the very bottom of the page the last section may never reach the line
+    // (e.g. a short contact section) — force it active so the final tab lights.
+    if (
+      window.innerHeight + window.scrollY >=
+      document.documentElement.scrollHeight - 2
+    ) {
+      current = sections[sections.length - 1].id;
+    }
+
+    if (current === activeId) return;
+    activeId = current;
+    navItems.forEach((l) => l.classList.remove("active"));
+    (linkMap[current] || []).forEach((l) => l.classList.add("active"));
   }
+  function onSpyScroll() {
+    if (!spyTicking) {
+      spyTicking = true;
+      requestAnimationFrame(updateSpy);
+    }
+  }
+  window.addEventListener("scroll", onSpyScroll, { passive: true });
+  window.addEventListener("resize", onSpyScroll, { passive: true });
+  updateSpy();
 
   /* ---------- Animated stat counters ---------- */
   const counters = document.querySelectorAll("[data-count]");
