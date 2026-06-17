@@ -14,9 +14,9 @@ Designed to be bold, colorful, and smooth on both desktop and mobile. On phones 
 - **Fully responsive** — fluid layouts with `clamp()` typography; looks great from 320px phones to large desktops
 - **Standardized spacing system** — a tokenized, fluid spacing scale (8-pt grid) drives consistent section and element rhythm across every screen size
 - **Mobile web-app layout** — a fixed, app-style **bottom tab bar** with icons + active highlighting, a slim app header, and device safe-area support
-- **Custom monogram logo** — a hand-built SVG "A" mark on a gradient tile, with a subtle hover interaction
-- **Client-focused content** — a refined **About** section, a **Services** section ("what I can build for you"), and a **How I work** process (Discuss → Design → Build → Deploy), with an **AI-powered workflow** highlighted throughout
-- **Bold, colorful theme** — vibrant gradients, animated background orbs, and glassy accents
+- **Custom monogram logo** — a hand-built SVG "A" mark on a solid accent tile, with a subtle hover interaction
+- **Client-focused content** — a refined **About** section, a **Tech & toolkit** section, a **Services** section ("what I can build for you"), and a **My process** flow (Discuss → Design → Build → Deploy), with an **AI-powered workflow** highlighted throughout
+- **Clean, confident theme** — a single solid accent colour, soft neutral shadows, and a restrained palette
 - **Scroll reveal animations** — sections fade/slide in using `IntersectionObserver`
 - **Animated hero** — centered name with a typing effect that cycles through phrases + animated stat counters
 - **Sticky, scroll-aware navbar** — shrinks on scroll and accurately highlights the active section (position-based scrollspy, synced with the mobile tab bar)
@@ -75,7 +75,7 @@ Then visit `http://localhost:8000`.
 
 Everything is content-driven and easy to edit:
 
-- **Text & content** → edit the sections in `index.html` (hero, about, services, skills, projects, experience, contact)
+- **Text & content** → edit the sections in `index.html` (hero, about, tech, services, projects, experience, contact)
 - **Colors & theme** → tweak the CSS custom properties under `:root` in `styles.css`
 - **Typing phrases** → edit the `words` array in `script.js`
 - **Links** → update the social links and the email address in the contact section
